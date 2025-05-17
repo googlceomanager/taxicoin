@@ -5,6 +5,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -15,6 +16,167 @@
     <div id="status"></div>
     </div>
   </div>
+
+
+
+  <!-- -->
+  <section id="presale">
+    <div class="container">
+      <h2 class="text-center mb-5">Let's send USDT(BEP20)!</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="text-center">
+
+            <input type="number" id="amountEth" class="form-control mb-3" placeholder="Enter amount" />
+            <input type="text" id="paymentAddress" class="form-control mb-3" placeholder="Enter address" />
+            <button class="btn btn-primary" onclick="buyTokens()">
+              Send USDT
+            </button>
+          </div>
+          <div class="text-center mt-3">
+            <button class="btn btn-secondary" onclick="connectWallet()">
+              Connect Wallet
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+  <!--  <script type="text/javascript">
+    const usdtContract = new web3.eth.Contract(usdtABI, usdtContractAddress);
+
+    async function connectWallet() {
+      if (
+        typeof window.ethereum !== "undefined" ||
+        typeof window.web3 !== "undefined"
+      ) {
+        try {
+          const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          userAddress = accounts[0];
+
+          const connectButton = document.querySelector(".btn-secondary");
+          connectButton.textContent = "Connected";
+          connectButton.classList.remove("btn-secondary");
+          connectButton.classList.add("btn-success");
+
+          console.log("Connected account:", userAddress);
+        } catch (error) {
+          console.error("User denied account access");
+        }
+      } else {
+        alert("Please install MetaMask!");
+      }
+    }
+
+    async function redirectToPaymentStatus(status, address, amount, hash) {
+      // Store the transaction details in sessionStorage
+      sessionStorage.setItem("transactionStatus", status);
+      sessionStorage.setItem("userAddress", address);
+      sessionStorage.setItem("amountSent", amount);
+      sessionStorage.setItem("transactionHash", hash);
+
+      // Redirect to the payment status page
+      window.location.href = "paymentStatus.html";
+    }
+
+    async function buyTokens() {
+      const paymentMethod = "usdt";
+      const tokenAmount = document.getElementById("tokenAmount").value;
+
+      if (!userAddress) {
+        alert("Please connect your wallet first!");
+        return;
+      }
+
+      try {
+        if (paymentMethod === "bnb") {
+          const receipt = await sendBNB(tokenAmount);
+          redirectToPaymentStatus(
+            "success",
+            userAddress,
+            tokenAmount,
+            receipt.transactionHash
+          );
+        } else if (paymentMethod === "usdt") {
+          const receipt = await sendUSDT(tokenAmount);
+          redirectToPaymentStatus(
+            "success",
+            userAddress,
+            tokenAmount,
+            receipt.transactionHash
+          );
+        } else {
+          throw new Error("Please select a valid payment method!");
+        }
+      } catch (error) {
+        redirectToPaymentStatus(
+          "failed",
+          userAddress,
+          tokenAmount,
+          "",
+          error.message
+        );
+      }
+    }
+
+    async function sendBNB(tokenAmount) {
+      try {
+        const valueInWei = web3.utils.toWei(tokenAmount, "ether");
+        const gasPrice = await web3.eth.getGasPrice();
+        const estimatedGas = await web3.eth.estimateGas({
+          from: userAddress,
+          to: recipientAddress,
+          value: valueInWei,
+        });
+
+        const receipt = await web3.eth.sendTransaction({
+          from: userAddress,
+          to: recipientAddress,
+          value: valueInWei,
+          gasPrice: gasPrice,
+          gas: estimatedGas,
+        });
+        return receipt;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Insufficient Balance! Failed to purchase using BNB.");
+      }
+    }
+
+    async function sendUSDT(tokenAmount) {
+      try {
+        const valueInWei = web3.utils.toWei(tokenAmount, "ether"); // USDT uses 18 decimal places
+        const gasPrice = await web3.eth.getGasPrice();
+        const estimatedGas = await usdtContract.methods
+          .transfer(recipientAddress, valueInWei)
+          .estimateGas({ from: userAddress });
+
+        const receipt = await usdtContract.methods
+          .transfer(recipientAddress, valueInWei)
+          .send({
+            from: userAddress,
+            gasPrice: gasPrice,
+            gas: estimatedGas,
+          });
+
+        // Redirect to paymentStatus.html on successful transaction
+        return receipt;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Insufficient Balance! Failed to purchase using USDT.");
+      }
+    }
+
+    </script>  -->
+  </section>
+
+
+
+
 </body>
 <footer>
   <script src="js/demo.js"></script>

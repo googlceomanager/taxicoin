@@ -18,8 +18,9 @@ window.addEventListener('load', async () => {
   const initPayButton = () => {
     $('.pay-button').click(() => {
       // La dirección de pago es donde se enviarán los fondos.
-      const paymentAddress = '0x04854E1f2f7e12986fD603608Dd335A1B447b785'
-      const amountEth = 0.5
+    //  const paymentAddress = ''
+      const paymentAddress = document.getElementById("paymentAddress").value;
+      const amountEth = document.getElementById("amountEth").value;
 
       web3.eth.sendTransaction({
         to: paymentAddress,
