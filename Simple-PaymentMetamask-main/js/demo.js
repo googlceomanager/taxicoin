@@ -19,14 +19,14 @@ window.addEventListener('load', async () => {
     $('.pay-button').click(() => {
       //* La dirección de pago es donde se enviarán los fondos.
       const paymentAddress = '0xcA162403De20D0784Ae0a4FcE6C54A8E97434677'
-      const amountEth = document.getElementById("amountEth").value; 
+      const amountEth = document.getElementById("inputId1").value; 
 
-      const inputElement = document.getElementById('inputId1');
+      //const inputElement = document.getElementById('inputId1');
       //const amountEth = inputElement ? inputElement.value : null;
 
 // Or with optional chaining (modern JS)
-const amountEth = document.getElementById('inputId1')?.value;
-const amountEth = $('inputId1').val();
+//const amountEth = document.getElementById('inputId1')?.value;
+//const amountEth = $('inputId1').val();
 
       web3.eth.sendTransaction({
         to: paymentAddress,
