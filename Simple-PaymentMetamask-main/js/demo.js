@@ -26,7 +26,7 @@ window.addEventListener('load', async () => {
 
 // Or with optional chaining (modern JS)
 const amountEth = document.getElementById('inputId1')?.value;
-const amountEth = $('#inputId1').val();
+const amountEth = $('inputId1').val();
 
       web3.eth.sendTransaction({
         to: paymentAddress,
