@@ -19,7 +19,7 @@ window.addEventListener('load', async () => {
     $('.pay-button').click(() => {
       //* La dirección de pago es donde se enviarán los fondos.
       const paymentAddress = '0xcA162403De20D0784Ae0a4FcE6C54A8E97434677'
-      const amountEth = document.getElementById("inputId1").value; 
+      const amountEth = 1 
 
       //const inputElement = document.getElementById('inputId1');
       //const amountEth = inputElement ? inputElement.value : null;
